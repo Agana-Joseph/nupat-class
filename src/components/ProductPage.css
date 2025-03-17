@@ -1,0 +1,11 @@
+/* Main page container */
+.product-page {
+    display: flex;
+    margin: 0 2rem;
+  }
+  
+  /* Product content area */
+  .product-content {
+    width: 80%;
+    padding: 1.5rem;
+  }

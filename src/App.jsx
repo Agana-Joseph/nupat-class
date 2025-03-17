@@ -1,17 +1,41 @@
 import React from "react";
-import ProductList from "./components/ProductList";
-import Cart from "./components/Cart";
-import Async from "./store/Async";
+import "./App.css";
+import CategorySidebar from "./components/CategorySidebar";
+import ProductLayout from "./components/ProductLayout";
+import CartOverlay from "./components/CartOverlay";
 
-const App = () => {
+function App() {
+  const [cart, setCart] = React.useState([]);
+  const [selectedCategory, setSelectedCategory] = React.useState("jewelry");
+
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
   return (
-    <div>
-      
-      {/* <Async/> */}
-      <ProductList />
-      <Cart />
+    <div className="app-container">
+
+      {/* Main Content */}
+      <div className="main-content">
+        {/* Category Sidebar */}
+        <CategorySidebar 
+          selectedCategory={selectedCategory} 
+          onSelectCategory={setSelectedCategory} 
+        />
+
+        {/* Product Grid */}
+        <div className="product-section">
+          <ProductLayout 
+            category={selectedCategory} 
+            addToCart={addToCart} 
+          />
+        </div>
+
+        {/* Cart Overlay */}
+        <CartOverlay cart={cart} setCart={setCart} />
+      </div>
     </div>
   );
-};
+}
 
 export default App;
